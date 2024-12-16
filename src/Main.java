@@ -23,14 +23,14 @@ public class Main {
             }
 
 
-            System.out.println("\n2. Посчитать, сколько раз встречается в файле каждое из слов и вывести статистику на экран. :");
+            System.out.println("\n2. Посчитать, сколько раз встречается в файле каждое из слов и вывести статистику на экран:");
             for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
                 System.out.println(entry.getKey() + ": " + entry.getValue());
             }
 
 
             int maxFrequency = Collections.max(wordFrequency.values());
-            System.out.println("\n3.Наиболее часто встрчающиеся слова:");
+            System.out.println("\n3.Наиболее часто встречающиеся слова:");
             for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
                 if (entry.getValue() == maxFrequency) {
                     System.out.println(entry.getKey() + ": " + entry.getValue());
