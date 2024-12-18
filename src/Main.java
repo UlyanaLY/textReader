@@ -22,14 +22,16 @@ public class Main {
                 System.out.println(word);
             }
 
+            double sum = wordFrequency.values().stream().mapToInt(Integer::intValue).sum();
 
             System.out.println("\n2. Посчитать, сколько раз встречается в файле каждое из слов и вывести статистику на экран:");
             for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
                 System.out.println(entry.getKey() + ": " + entry.getValue());
+                System.out.println(entry.getKey() + ": " + (pt(sum, entry.getValue()) + "%"));
             }
 
-
             int maxFrequency = Collections.max(wordFrequency.values());
+
             System.out.println("\n3.Наиболее часто встречающиеся слова:");
             for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
                 if (entry.getValue() == maxFrequency) {
@@ -57,7 +59,7 @@ public class Main {
 
     private static Map<String, Integer> calculateWordFrequency(String content) {
 
-        String[] words = content.toLowerCase().split("[\\s\\p{Punct}&&[^']]++");
+        String[] words = content.toLowerCase().split("[\\s\\p{Punct}\\d&&[^']]++");
 
         Map<String, Integer> wordFrequency = new HashMap<>();
         for (String word : words) {
@@ -66,5 +68,11 @@ public class Main {
             }
         }
         return wordFrequency;
+    }
+
+    private static double pt(double sum, double fr) {
+        double a = (fr / sum) * 100;
+        a = Math.round(a * 1000.0) / 1000.0;
+        return a;
     }
 }
